@@ -6,21 +6,11 @@ public class Program
 {
 	public static void Main(string[] args)
 	{
-		var path = args[0];
-		
-		int[] input;
-		
-		using (var reader = new StreamReader(path))
+		using (var reader = new StreamReader(args[0]))
 		{
-			input = reader.ReadLine().Split(';').Select(x => Convert.ToInt32(x)).ToArray();	
+			int[] input = reader.ReadLine().Split(';').Select(x => Convert.ToInt32(x)).ToArray();	
+			Console.WriteLine(string.Join(";", InsertionSortDesc(input)));
 		}
-		
-		var result = InsertionSortDesc(input);
-
-		foreach (var item in result)
-			Console.Write(item + ";");
-			
-		Console.WriteLine();
 	}
 	
 	private static int[] InsertionSortDesc(int[] input)
