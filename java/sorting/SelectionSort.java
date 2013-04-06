@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class InsertionSort {
+public class SelectionSort {
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		String path = args[0];
 		
@@ -16,7 +16,7 @@ public class InsertionSort {
 		for (int i = 0; i < valueStr.length; i++)
 			input[i] = Integer.parseInt(valueStr[i]);
 		
-		int[] result = InsertionSort(input);
+		int[] result = SelectionSort(input);
 		
 		StringBuilder sb = new StringBuilder();		
 		String prefix = "";
@@ -30,17 +30,21 @@ public class InsertionSort {
 		System.out.println(sb.toString());
 	}
 	
-	private static int[] InsertionSort(int[] input) {
-		for (int j = 1; j < input.length; j++) {
-			int key = input[j];
-			
-			int i = j - 1;
-			while (i > -1 && input[i] > key) {
-				input[i + 1] = input[i];
-				i--;
+	private static int[] SelectionSort(int[] input) {
+		int n = input.length;
+		
+		for (int j = 0; j < n - 1; j++)
+		{
+			int smallest = j;
+			for (int i = j + 1; i < n; i++)
+			{
+				if (input[i] < input[smallest])
+					smallest = i;
 			}
 			
-			input[i+1] = key;
+			int temp = input[j];
+			input[j] = input[smallest];
+			input[smallest] = temp;
 		}
 		
 		return input;
